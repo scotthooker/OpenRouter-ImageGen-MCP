@@ -1,0 +1,51 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "rules": {
+    "max-lines-per-function": ["warn", 50],
+    "max-lines": ["warn", 200],
+    "max-depth": ["warn", 3],
+    "max-nested-callbacks": ["warn", 3],
+    "complexity": ["warn", 10],
+    "max-params": ["warn", 3],
+    "no-console": ["warn", { "allow": ["error", "warn"] }],
+    "no-debugger": "error",
+    "no-duplicate-imports": "error",
+    "prefer-const": "error",
+    "prefer-template": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/await-thenable": "error",
+    "@typescript-eslint/no-misused-promises": "error",
+    "@typescript-eslint/prefer-nullish-coalescing": "warn",
+    "@typescript-eslint/prefer-optional-chain": "warn"
+  },
+  "env": {
+    "node": true,
+    "es2022": true,
+    "jest": true
+  },
+  "ignorePatterns": ["dist", "node_modules", "coverage", "*.backup.ts", "*.refactored.ts"],
+  "overrides": [
+    {
+      "files": ["**/__tests__/**/*.ts", "**/*.test.ts", "**/*.spec.ts"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "max-nested-callbacks": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+*.log
+.env
+generated_images
+*.backup.ts

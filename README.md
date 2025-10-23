@@ -1,8 +1,10 @@
 # OpenRouter ImageGen MCP
 
-A Model Context Protocol (MCP) server that enables AI assistants like Claude to generate images using multiple AI models via the OpenRouter API.
+A Model Context Protocol (MCP) server that enables Claude Code to generate images using multiple AI models via the OpenRouter API.
 
 🌐 **[Visit our landing page at imageroutermcp.com](https://imageroutermcp.com)** for interactive documentation and examples!
+
+> **Built for Claude Code** - The official CLI for Claude by Anthropic
 
 ## Features
 
@@ -28,7 +30,28 @@ A Model Context Protocol (MCP) server that enables AI assistants like Claude to 
 - Node.js 18 or higher
 - OpenRouter API key ([Get one here](https://openrouter.ai/))
 
-### Setup
+### Quick Setup (Recommended)
+
+1. **Clone and setup in one command**
+   ```bash
+   git clone https://github.com/scotthooker/OpenRouter-ImageGen-MCP.git
+   cd OpenRouter-ImageGen-MCP
+   npm run setup
+   ```
+
+2. **Copy the generated configuration**
+   - The `npm run setup` command will display your custom configuration
+   - Copy the JSON configuration shown in the output
+
+3. **Add to Claude Code**
+   - Open `~/.config/claude-code/mcp_settings.json` (macOS/Linux)
+   - Or `%APPDATA%\Claude Code\mcp_settings.json` (Windows)
+   - Paste the configuration (create the file if it doesn't exist)
+   - Replace `your-openrouter-api-key-here` with your actual API key
+
+4. **Restart Claude Code**
+
+### Manual Setup
 
 1. **Clone the repository**
    ```bash
@@ -36,15 +59,17 @@ A Model Context Protocol (MCP) server that enables AI assistants like Claude to 
    cd OpenRouter-ImageGen-MCP
    ```
 
-2. **Install dependencies**
+2. **Install and build**
    ```bash
    npm install
-   ```
-
-3. **Build the project**
-   ```bash
    npm run build
    ```
+
+3. **Generate configuration**
+   ```bash
+   npm run config
+   ```
+   This will show you the exact configuration for your setup.
 
 4. **Get your OpenRouter API key**
    - Sign up at [OpenRouter](https://openrouter.ai/)
@@ -52,20 +77,22 @@ A Model Context Protocol (MCP) server that enables AI assistants like Claude to 
 
 ## Configuration
 
-### For Claude Desktop
+### For Claude Code
 
-Add to your Claude Desktop configuration file:
+The `npm run config` command generates the exact configuration you need based on where you cloned the repository.
 
-**MacOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+**Configuration file locations:**
+- **macOS/Linux**: `~/.config/claude-code/mcp_settings.json`
+- **Windows**: `%APPDATA%\Claude Code\mcp_settings.json`
 
+**Example configuration:**
 ```json
 {
   "mcpServers": {
     "openrouter-imagegen": {
       "command": "node",
       "args": [
-        "/absolute/path/to/OpenRouter-ImageGen-MCP/dist/index.js"
+        "/your/path/to/OpenRouter-ImageGen-MCP/dist/index.js"
       ],
       "env": {
         "OPENROUTER_API_KEY": "your-api-key-here"
@@ -74,6 +101,8 @@ Add to your Claude Desktop configuration file:
   }
 }
 ```
+
+> 💡 **Tip**: Run `npm run config` anytime to see your current configuration
 
 ### For Other MCP Clients
 
@@ -86,9 +115,11 @@ npm start
 
 ## Usage
 
-Once configured, your AI assistant can generate images using natural language:
+Once configured, Claude Code can generate images using natural language commands:
 
 ### Basic Examples
+
+In your Claude Code terminal, simply ask:
 
 ```
 "Generate a photorealistic sunset over mountains"
@@ -115,6 +146,20 @@ Once configured, your AI assistant can generate images using natural language:
 ```
 
 Images are saved to the `generated_images` folder in your current working directory.
+
+### Usage with Claude Code
+
+Claude Code automatically detects and uses the MCP server when you request image generation:
+
+```bash
+# Start Claude Code in your project directory
+claude-code
+
+# Then simply ask:
+> "Generate a hero image for my landing page, modern gradient style"
+> "Create an icon for my app, minimalist design, 512x512"
+> "Generate a diagram showing microservices architecture"
+```
 
 ## Available Tools
 
@@ -145,44 +190,42 @@ List all available image generation models with descriptions.
 
 ## Development
 
-### Run Tests
+### Available Commands
+
+#### Setup & Configuration
 ```bash
-npm test
+npm run setup        # Complete setup: install, build, and show configuration
+npm run config       # Generate MCP configuration for your installation path
+npm install          # Install dependencies
+npm run build        # Build the TypeScript project
 ```
 
-### Run with Coverage
+#### Running
 ```bash
-npm run test:coverage
+npm start            # Start the MCP server
+npm run dev          # Build and start in development mode
 ```
 
-### Lint Code
+#### Testing & Quality
 ```bash
-npm run lint
+npm test             # Run all tests
+npm run test:watch   # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
+npm run lint         # Lint TypeScript files
+npm run lint:fix     # Auto-fix linting issues
+npm run format       # Format code with Prettier
+npm run format:check # Check code formatting
+npm run typecheck    # Run TypeScript type checking
 ```
 
-### Format Code
+#### Utilities
 ```bash
-npm run format
+npm run clean        # Clean build artifacts and coverage
+npm run website:serve    # Serve landing page locally
+npm run website:validate # Validate website structure
 ```
 
-### Type Check
-```bash
-npm run typecheck
-```
-
-### Website Development
-
-To preview the landing page locally:
-```bash
-npm run website:serve
-```
-
-To validate the website structure:
-```bash
-npm run website:validate
-```
-
-See [website/README.md](website/README.md) for more details on website development and deployment.
+> 📖 See [website/README.md](website/README.md) for website development and deployment details.
 
 ## Project Structure
 
