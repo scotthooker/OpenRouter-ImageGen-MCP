@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/scotthooker-openrouter-imagegen-mcp-badge.png)](https://mseep.ai/app/scotthooker-openrouter-imagegen-mcp)
+
 # OpenRouter ImageGen MCP
 
 A Model Context Protocol (MCP) server that enables Claude Code to generate images using multiple AI models via the OpenRouter API.
